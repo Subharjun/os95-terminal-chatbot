@@ -13,35 +13,45 @@
   --color-terminal-bg: var(--terminal-bg);
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100dvh; /* fix mobile Safari viewport bug */
+  overflow: hidden; /* prevent double scrollbars — page.js scroll area handles scrolling */
+}
+
 body {
   background-color: var(--terminal-bg);
   color: var(--terminal-green);
-  overflow: hidden;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  text-shadow: 0 0 5px rgba(51, 255, 51, 0.5);
+  text-shadow: 0 0 5px rgba(51, 255, 51, 0.4);
   font-family: var(--font-vt323), monospace;
-  font-size: 1.25rem;
+  /* Responsive font size: smaller on mobile, larger on desktop */
+  font-size: clamp(0.9rem, 2.5vw, 1.25rem);
 }
 
-/* CRT Screen Effects */
+/* ── CRT Effects ─────────────────────────────────────────────────────────── */
+
 .crt-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    rgba(18, 16, 16, 0) 50%,
-    rgba(0, 0, 0, 0.25) 50%
-  ),
-  linear-gradient(
-    90deg,
-    rgba(255, 0, 0, 0.06),
-    rgba(0, 255, 0, 0.02),
-    rgba(0, 0, 255, 0.06)
-  );
+  inset: 0;
+  background:
+    linear-gradient(
+      rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.2) 50%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.05),
+      rgba(0, 255, 0, 0.02),
+      rgba(0, 0, 255, 0.05)
+    );
   background-size: 100% 4px, 3px 100%;
   pointer-events: none;
   z-index: 100;
@@ -53,8 +63,8 @@ body {
 }
 
 @keyframes flicker {
-  0% { opacity: 0.97; }
-  50% { opacity: 1; }
+  0%   { opacity: 0.97; }
+  50%  { opacity: 1; }
   100% { opacity: 0.98; }
 }
 
@@ -66,7 +76,7 @@ body {
   height: 100px;
   background: linear-gradient(
     rgba(51, 255, 51, 0),
-    rgba(51, 255, 51, 0.1),
+    rgba(51, 255, 51, 0.08),
     rgba(51, 255, 51, 0)
   );
   animation: scan 8s linear infinite;
@@ -75,18 +85,18 @@ body {
 }
 
 @keyframes scan {
-  0% { transform: translateY(-100px); }
-  100% { transform: translateY(100vh); }
+  0%   { transform: translateY(-100px); }
+  100% { transform: translateY(100dvh); }
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #000;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--terminal-green);
-  border-radius: 4px;
+/* ── Scrollbar ───────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(51, 255, 51, 0.25); border-radius: 2px; }
+
+/* ── Mobile tweaks ───────────────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .hide-xs { display: none !important; }
 }

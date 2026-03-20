@@ -343,12 +343,6 @@ export default function Home() {
       <style jsx global>{`
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        * { box-sizing: border-box; }
-        body { margin: 0; }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(51,255,51,0.2); border-radius: 2px; }
-        @media (max-width: 480px) { .hide-xs { display: none !important; } }
       `}</style>
     </div>
   );
