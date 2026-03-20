@@ -58,7 +58,7 @@ const A = "#ffb000";
 const BG = "#0d0208";
 
 function btn(color) {
-  return { border: `1px solid ${color}`, color, background: "transparent", padding: "4px 10px", fontSize: "0.75rem", cursor: "pointer", fontFamily: "inherit", letterSpacing: "0.04em", minHeight: "28px", whiteSpace: "nowrap" };
+  return { border: `1px solid ${color}`, color, background: "transparent", padding: "4px 12px", fontSize: "inherit", cursor: "pointer", fontFamily: "inherit", letterSpacing: "0.04em", minHeight: "32px", whiteSpace: "nowrap" };
 }
 
 export default function Home() {
@@ -197,16 +197,18 @@ export default function Home() {
   // ─── Render ─────────────────────────────────────────────────────────────
 
   return (
-    <div suppressHydrationWarning style={{ display: "flex", flexDirection: "column", height: "100dvh", padding: "8px 12px", boxSizing: "border-box" }}>
+    <div suppressHydrationWarning style={{ display: "flex", height: "100dvh", alignItems: "stretch", justifyContent: "center", boxSizing: "border-box" }}>
+      {/* centred max-width column */}
+      <div style={{ display: "flex", flexDirection: "column", width: "100%", maxWidth: "1100px", padding: "clamp(8px, 2vw, 24px) clamp(12px, 3vw, 40px)", boxSizing: "border-box" }}>
 
       {/* HEADER */}
-      <header style={{ display: "flex", alignItems: "center", gap: "8px", borderBottom: "1px solid rgba(51,255,51,0.3)", paddingBottom: "6px", marginBottom: "8px", flexShrink: 0 }}>
-        <div style={{ color: G, fontSize: "0.8rem", fontWeight: "bold", whiteSpace: "nowrap" }}>OS-95&#8482;</div>
-        <div suppressHydrationWarning style={{ flex: 1, textAlign: "center", color: G, fontSize: "0.7rem", opacity: 0.55, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} className="hide-xs">
+      <header style={{ display: "flex", alignItems: "center", gap: "10px", borderBottom: "1px solid rgba(51,255,51,0.3)", paddingBottom: "8px", marginBottom: "12px", flexShrink: 0 }}>
+        <div style={{ color: G, fontSize: "1em", fontWeight: "bold", whiteSpace: "nowrap", letterSpacing: "0.06em" }}>OS-95&#8482;</div>
+        <div suppressHydrationWarning style={{ flex: 1, textAlign: "center", color: G, fontSize: "0.8em", opacity: 0.55, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} className="hide-xs">
           {mounted ? (session ? `${session.label} \u2022 ${clock}` : clock) : ""}
         </div>
         {!isBooting && (
-          <div style={{ display: "flex", gap: "6px", flexShrink: 0 }}>
+          <div style={{ display: "flex", gap: "8px", flexShrink: 0 }}>
             <button onClick={() => setShowLogs(true)} style={btn(G)}>&#9776; LOGS</button>
             <button onClick={() => setConfirmRestart(true)} style={btn(A)}>&#8635; NEW</button>
           </div>
@@ -344,6 +346,7 @@ export default function Home() {
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
       `}</style>
+      </div>
     </div>
   );
 }
