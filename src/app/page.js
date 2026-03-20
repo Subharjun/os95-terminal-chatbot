@@ -264,7 +264,7 @@ export default function Home() {
           {isBooting ? (
             <div>
               {bootLines.filter(Boolean).map((line, i) => (
-                <div key={i} style={{ color: line.startsWith("=") || line.startsWith("WELCOME") ? G : "#22cc22", fontSize: "0.9rem", lineHeight: 1.6 }}>
+                <div key={i} style={{ color: line.startsWith("=") || line.startsWith("WELCOME") ? G : "#22cc22", fontSize: "1em", lineHeight: 1.6 }}>
                   {line.startsWith("=") || line.startsWith("WELCOME") || line.startsWith("TYPE") ? line : `> ${line}`}
                 </div>
               ))}
@@ -273,7 +273,7 @@ export default function Home() {
           ) : (
             <>
               {messages.length === 0 && (
-                <div style={{ color: G, opacity: 0.3, fontStyle: "italic", fontSize: "0.85rem", textAlign: "center", padding: "20px 0" }}>
+                <div style={{ color: G, opacity: 0.3, fontStyle: "italic", fontSize: "0.85em", textAlign: "center", padding: "20px 0" }}>
                   --- NO PRIOR TRANSMISSIONS. READY FOR FIRST CONTACT. ---
                 </div>
               )}
@@ -284,7 +284,7 @@ export default function Home() {
                   onMouseLeave={() => setHovered(null)}
                   onTouchStart={() => setHovered(i === hovered ? null : i)}
                 >
-                  <div style={{ fontSize: "0.62rem", opacity: 0.35, marginBottom: "2px", color: G }}>
+                  <div style={{ fontSize: "0.6em", opacity: 0.35, marginBottom: "2px", color: G }}>
                     [{msg.role === "user" ? "OPERATOR" : "AXIOM-7"} @ {msg.timestamp}{msg.usedSearch ? " | LIVE" : ""}]
                   </div>
                   <div style={{ position: "relative", maxWidth: "90%" }}>
@@ -295,7 +295,7 @@ export default function Home() {
                       background: msg.role === "user" ? "rgba(255,176,0,0.05)" : msg.error ? "rgba(255,68,68,0.05)" : "rgba(51,255,51,0.04)",
                       whiteSpace: "pre-wrap",
                       lineHeight: 1.55,
-                      fontSize: "0.95rem",
+                      fontSize: "inherit",
                       wordBreak: "break-word",
                     }}>
                       {msg.content}
@@ -310,7 +310,7 @@ export default function Home() {
                 </div>
               ))}
               {isTyping && (
-                <div style={{ display: "flex", alignItems: "center", gap: "8px", opacity: 0.5, fontSize: "0.85rem", color: G, fontStyle: "italic" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", opacity: 0.5, fontSize: "0.85em", color: G, fontStyle: "italic" }}>
                   <span style={{ animation: "spin 1s linear infinite", display: "inline-block" }}>◌</span>
                   {status || "PROCESSING..."}
                 </div>
@@ -324,7 +324,7 @@ export default function Home() {
       {/* INPUT */}
       {!isBooting && (
         <form onSubmit={handleSubmit} style={{ display: "flex", alignItems: "center", gap: "8px", borderTop: "1px solid rgba(51,255,51,0.25)", paddingTop: "8px", marginTop: "6px", flexShrink: 0 }}>
-          <span style={{ color: G, fontSize: "1rem", animation: "blink 0.8s step-start infinite", flexShrink: 0 }}>&#62;_</span>
+          <span style={{ color: G, fontSize: "1em", animation: "blink 0.8s step-start infinite", flexShrink: 0 }}>&#62;_</span>
           <input
             id="terminal-input"
             type="text"
@@ -334,7 +334,7 @@ export default function Home() {
             placeholder="ENTER QUERY..."
             disabled={isTyping}
             autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false"
-            style={{ flex: 1, background: "transparent", border: "none", outline: "none", color: G, fontFamily: "inherit", fontSize: "1rem", caretColor: G, minWidth: 0 }}
+            style={{ flex: 1, background: "transparent", border: "none", outline: "none", color: G, fontFamily: "inherit", fontSize: "1em", caretColor: G, minWidth: 0 }}
           />
           <button type="submit" disabled={isTyping || !input.trim()} style={{ ...btn(G), opacity: isTyping || !input.trim() ? 0.3 : 1, flexShrink: 0 }}>
             SEND
